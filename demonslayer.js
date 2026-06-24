@@ -1107,7 +1107,7 @@ function submitGuess(){
         <td><div class="${compare(character.gender, secretCharacter.gender)}">${character.gender}</div></td>
         <td><div class="${compare(character.race, secretCharacter.race)}">${character.race}</div></td>
         <td>${numberDisplay(character.age, secretCharacter.age)}</td>
-        <td><div class="${compare(character.killed, secretCharacter.killed)}">${character.killed}</div></td>
+        <td><div class="${compare(character.fought, secretCharacter.fought)}">${character.fought}</div></td>
         <td><div class="${compare(character.style, secretCharacter.style)}">${character.style}</div></td>
         <td><div class="${compare(character.affiliation, secretCharacter.affiliation)}">${character.affiliation}</div></td>
         <td>${arcDisplay(character.firstArc, secretCharacter.firstArc)}</td>
