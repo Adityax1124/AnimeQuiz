@@ -1486,6 +1486,7 @@ const characters = [
     }
 ];
 
+
 const arcOrder = {
     "Land of Waves":1,
     "Chunin Exams":2,
@@ -1513,39 +1514,26 @@ characters[
 ];
 
 let guessCount = 0;
+let streak = 0;
 let arcHintShown = false;
 let natureHintShown = false;
 
-const input =
-document.getElementById("guessInput");
-
-const suggestions =
-document.getElementById("suggestions");
+const input = document.getElementById("guessInput");
+const suggestions = document.getElementById("suggestions");
 
 input.addEventListener("input", function(){
 
-    const value =
-    input.value
-    .toLowerCase()
-    .trim();
-
+    const value = input.value.toLowerCase().trim();
     suggestions.innerHTML = "";
 
     if(value === "") return;
 
-    const matches =
-    characters.filter(
-        character =>
-        character.name
-        .toLowerCase()
-        .includes(value)
+    const matches = characters.filter(character =>
+        character.name.toLowerCase().includes(value)
     );
 
     matches.forEach(character => {
-
-        const div =
-        document.createElement("div");
-
+        const div = document.createElement("div");
         div.className = "suggestion";
         div.innerText = character.name;
 
@@ -1556,24 +1544,16 @@ input.addEventListener("input", function(){
 
         suggestions.appendChild(div);
     });
-
 });
 
 input.addEventListener("keydown", function(e){
 
     if(e.key !== "Enter") return;
 
-    const value =
-    input.value
-    .toLowerCase()
-    .trim();
+    const value = input.value.toLowerCase().trim();
 
-    const matches =
-    characters.filter(
-        character =>
-        character.name
-        .toLowerCase()
-        .includes(value)
+    const matches = characters.filter(character =>
+        character.name.toLowerCase().includes(value)
     );
 
     if(matches.length === 1){
@@ -1583,37 +1563,46 @@ input.addEventListener("keydown", function(e){
     submitGuess();
 });
 
-function compare(a,b){
+function compare(a, b){
     return a === b ? "correct" : "wrong";
 }
 
 function compareList(guessValue, secretValue){
 
-    const guessList =
-    guessValue
-    .toLowerCase()
-    .split(",")
-    .map(item => item.trim())
-    .filter(item => item !== "" && item !== "none");
+    const guessText = guessValue.toLowerCase().trim();
+    const secretText = secretValue.toLowerCase().trim();
 
-    const secretList =
-    secretValue
-    .toLowerCase()
-    .split(",")
-    .map(item => item.trim())
-    .filter(item => item !== "" && item !== "none");
-
-    if(
-        guessValue.toLowerCase().trim() ===
-        secretValue.toLowerCase().trim()
-    ){
+    if(guessText === secretText){
         return "correct";
     }
 
-    const hasShared =
-    guessList.some(
-        item => secretList.includes(item)
-    );
+    const guessList = guessText
+        .split(",")
+        .map(item => item.trim())
+        .filter(item => item !== "");
+
+    const secretList = secretText
+        .split(",")
+        .map(item => item.trim())
+        .filter(item => item !== "");
+
+    if(guessList.length === 0 || secretList.length === 0){
+        return "wrong";
+    }
+
+    if(guessList.length === 1 && guessList[0] === "none" && secretList.length === 1 && secretList[0] === "none"){
+        return "correct";
+    }
+
+    if(guessList.length === 1 && guessList[0] === "none"){
+        return "wrong";
+    }
+
+    if(secretList.length === 1 && secretList[0] === "none"){
+        return "wrong";
+    }
+
+    const hasShared = guessList.some(item => secretList.includes(item));
 
     if(hasShared){
         return "partial";
@@ -1648,9 +1637,7 @@ function submitGuess(){
 
     if(guess === "") return;
 
-    const character =
-    characters.find(
-        character =>
+    const character = characters.find(character =>
         character.name.toLowerCase() === guess.toLowerCase()
     );
 
@@ -1660,22 +1647,17 @@ function submitGuess(){
     }
 
     guessCount++;
-
-    document.getElementById("guessCounter").innerText =
-    `Guesses: ${guessCount}`;
+    document.getElementById("guessCounter").innerText = `Guesses: ${guessCount}`;
 
     if(guessCount >= 6 && !arcHintShown){
-        document.getElementById("arcStatus").innerText =
-        "Debut Arc Hint: Available";
+        document.getElementById("arcStatus").innerText = "Debut Arc Hint: Available";
     }
 
     if(guessCount >= 9 && !natureHintShown){
-        document.getElementById("natureStatus").innerText =
-        "Nature Hint: Available";
+        document.getElementById("natureStatus").innerText = "Nature Hint: Available";
     }
 
-    const row =
-    document.createElement("tr");
+    const row = document.createElement("tr");
 
     row.innerHTML = `
         <td><div class="${compare(character.name, secretCharacter.name)}">${character.name}</div></td>
@@ -1696,9 +1678,7 @@ function submitGuess(){
         return;
     }
 
-    document
-    .getElementById("resultBody")
-    .prepend(row);
+    document.getElementById("resultBody").prepend(row);
 
     input.value = "";
     suggestions.innerHTML = "";
@@ -1747,9 +1727,33 @@ function showWinMessage(){
 
     input.disabled = true;
 
+    streak++;
+    document.getElementById("streakCounter").innerText =
+    `Streak: ${streak}`;
+
     document.getElementById("winPopupText").innerHTML = `
-        The answer was <strong>${secretCharacter.name}</strong><br>
-        Total Guesses: <strong>${guessCount}</strong>
+        Correct! The answer was <strong>${secretCharacter.name}</strong><br>
+        Guesses this round: <strong>${guessCount}</strong><br>
+        Current Streak: <strong>${streak}</strong>
+    `;
+
+    document
+    .getElementById("winPopup")
+    .classList.remove("hidden");
+}
+
+function giveUp(){
+
+    input.disabled = true;
+
+    streak = 0;
+    document.getElementById("streakCounter").innerText =
+    "Streak: 0";
+
+    document.getElementById("winPopupText").innerHTML = `
+        You gave up.<br>
+        The secret character was <strong>${secretCharacter.name}</strong><br>
+        Your streak has been broken.
     `;
 
     document
