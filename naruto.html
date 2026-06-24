@@ -13,11 +13,12 @@
         <div class="wanted-header">
             <div class="wanted-top">SHINOBI FILE</div>
             <h1>NARUTO CHARACTER GUESSER</h1>
-            <p class="subtitle">Guess Today’s Shinobi!</p>
+            <p class="subtitle">Guess The Shinobi!</p>
         </div>
 
         <div class="stats-bar">
             <div id="guessCounter">Guesses: 0</div>
+            <div id="streakCounter">Streak: 0</div>
             <div id="arcStatus">Debut Arc Hint: Locked</div>
             <div id="natureStatus">Nature Hint: Locked</div>
         </div>
@@ -28,7 +29,8 @@
                 type="text"
                 id="guessInput"
                 placeholder="Character name..."
-                autocomplete="off">
+                autocomplete="off"
+            >
 
             <div id="suggestions"></div>
 
@@ -39,6 +41,10 @@
 
                 <button class="hint-btn" onclick="showHint()">
                     Hint
+                </button>
+
+                <button class="giveup-btn" onclick="giveUp()">
+                    Give Up
                 </button>
             </div>
 
@@ -112,7 +118,7 @@
 
     <div id="winPopup" class="win-popup hidden">
         <div class="win-popup-content">
-            <h2>🎉 Correct Guess!</h2>
+            <h2>🍥 Round Complete</h2>
             <p id="winPopupText"></p>
             <button class="play-again-btn" onclick="continueStreak()">
                 Continue Streak
