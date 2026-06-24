@@ -345,7 +345,7 @@ const characters = [
         "race": "Shinigami",
         "age": "100+",
         "height": "153 cm",
-        "hairColor": "Brown",
+        "hairColor": "Black",
         "location": "Soul Society",
         "firstArc": "Soul Society Arc"
     },
