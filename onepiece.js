@@ -1245,25 +1245,32 @@ const arcOrder = {
     "Punk Hazard": 20,
     "Dressrosa": 21,
     "Whole Cake Island": 22,
-    "Wano": 23,
-    "Wano Country": 24,
-    "Egghead": 25
+    "Wano Country": 23,
+    "Egghead": 24
 };
 
-let secretCharacter = characters[Math.floor(Math.random() * characters.length)];
+let secretCharacter =
+characters[
+    Math.floor(
+        Math.random() *
+        characters.length
+    )
+];
+
 let guessCount = 0;
+let streak = 0;
 let arcHintShown = false;
 let hakiHintShown = false;
 
 const input = document.getElementById("guessInput");
 const suggestions = document.getElementById("suggestions");
 
-// --- Auto-suggest ---
-input.addEventListener("input", function() {
+input.addEventListener("input", function(){
+
     const value = input.value.toLowerCase().trim();
     suggestions.innerHTML = "";
 
-    if (value === "") return;
+    if(value === "") return;
 
     const matches = characters.filter(character =>
         character.name.toLowerCase().includes(value)
@@ -1273,127 +1280,162 @@ input.addEventListener("input", function() {
         const div = document.createElement("div");
         div.className = "suggestion";
         div.innerText = character.name;
-        div.onclick = function() {
+
+        div.onclick = function(){
             input.value = character.name;
             suggestions.innerHTML = "";
-            input.focus();
         };
+
         suggestions.appendChild(div);
     });
 });
 
-// --- Enter key ---
-input.addEventListener("keydown", function(e) {
-    if (e.key !== "Enter") return;
+input.addEventListener("keydown", function(e){
+
+    if(e.key !== "Enter") return;
 
     const value = input.value.toLowerCase().trim();
+
     const matches = characters.filter(character =>
         character.name.toLowerCase().includes(value)
     );
 
-    if (matches.length === 1) {
+    if(matches.length === 1){
         input.value = matches[0].name;
     }
 
     submitGuess();
 });
 
-// --- Comparison helpers ---
-function compare(a, b) {
+function compare(a, b){
     return a === b ? "correct" : "wrong";
 }
 
-function compareHaki(guessHaki, secretHaki) {
-    const guessList = guessHaki.toLowerCase().split(",").map(h => h.trim());
-    const secretList = secretHaki.toLowerCase().split(",").map(h => h.trim());
+function compareHaki(guessHaki, secretHaki){
 
-    const exactMatch = guessList.length === secretList.length &&
-                       guessList.every(h => secretList.includes(h));
+    const guessList = guessHaki
+        .toLowerCase()
+        .split(",")
+        .map(haki => haki.trim())
+        .filter(haki => haki !== "" && haki !== "none");
 
-    if (exactMatch) return "correct";
+    const secretList = secretHaki
+        .toLowerCase()
+        .split(",")
+        .map(haki => haki.trim())
+        .filter(haki => haki !== "" && haki !== "none");
 
-    const sharedHaki = guessList.some(h => secretList.includes(h));
-    return sharedHaki ? "partial" : "wrong";
+    const exactMatch =
+        guessList.length === secretList.length &&
+        guessList.every(haki => secretList.includes(haki));
+
+    if(exactMatch){
+        return "correct";
+    }
+
+    const sharedHaki =
+        guessList.some(haki => secretList.includes(haki));
+
+    if(sharedHaki){
+        return "partial";
+    }
+
+    return "wrong";
 }
 
-function bountyDisplay(guess, secret) {
+function bountyDisplay(guess, secret){
+
     const guessed = Number(guess);
     const target = Number(secret);
 
-    if (guessed === target) return `<span class="correct">${guess}</span>`;
-    if (guessed < target) return `<span class="wrong">${guess} ⬆️</span>`;
-    return `<span class="wrong">${guess} ⬇️</span>`;
+    if(guessed === target){
+        return `<div class="correct">${guess}</div>`;
+    }
+
+    if(guessed < target){
+        return `<div class="wrong">${guess} ⬆️</div>`;
+    }
+
+    return `<div class="wrong">${guess} ⬇️</div>`;
 }
 
-function heightDisplay(guess, secret) {
+function heightDisplay(guess, secret){
+
     const guessed = Number(guess);
     const target = Number(secret);
 
-    if (guessed === target) return `<span class="correct">${guess}</span>`;
-    if (guessed < target) return `<span class="wrong">${guess} ⬆️</span>`;
-    return `<span class="wrong">${guess} ⬇️</span>`;
+    if(guessed === target){
+        return `<div class="correct">${guess}</div>`;
+    }
+
+    if(guessed < target){
+        return `<div class="wrong">${guess} ⬆️</div>`;
+    }
+
+    return `<div class="wrong">${guess} ⬇️</div>`;
 }
 
-function arcDisplay(guessArc, secretArc) {
+function arcDisplay(guessArc, secretArc){
+
     const guessPos = arcOrder[guessArc];
     const secretPos = arcOrder[secretArc];
 
-    if (!guessPos || !secretPos) return `<span class="wrong">${guessArc} ❓</span>`;
-
-    if (guessPos === secretPos) return `<span class="correct">${guessArc}</span>`;
-    if (guessPos < secretPos) return `<span class="wrong">${guessArc} ➡️</span>`;
-    return `<span class="wrong">${guessArc} ⬅️</span>`;
-}
-
-// --- Submit guess ---
-function submitGuess() {
-    const guess = input.value.trim();
-
-    if (guess === "") {
-        alert("Please enter a character name.");
-        return;
+    if(guessPos === undefined || secretPos === undefined){
+        return `<div class="wrong">${guessArc}</div>`;
     }
 
-    const character = characters.find(c =>
-        c.name.toLowerCase() === guess.toLowerCase()
+    if(guessPos === secretPos){
+        return `<div class="correct">${guessArc}</div>`;
+    }
+
+    if(guessPos < secretPos){
+        return `<div class="wrong">${guessArc} ➡️</div>`;
+    }
+
+    return `<div class="wrong">${guessArc} ⬅️</div>`;
+}
+
+function submitGuess(){
+
+    const guess = input.value.trim();
+
+    if(guess === "") return;
+
+    const character = characters.find(character =>
+        character.name.toLowerCase() === guess.toLowerCase()
     );
 
-    if (!character) {
-        alert("Character not found! Try using the autocomplete suggestions.");
+    if(!character){
+        alert("Character not found!");
         return;
     }
 
     guessCount++;
-
     document.getElementById("guessCounter").innerText = `Guesses: ${guessCount}`;
 
-    // Hints unlock logic
-    if (guessCount >= 6 && !arcHintShown) {
+    if(guessCount >= 6 && !arcHintShown){
         document.getElementById("arcStatus").innerText = "Arc Hint: Available";
     }
 
-    if (guessCount >= 9 && !hakiHintShown) {
+    if(guessCount >= 9 && !hakiHintShown){
         document.getElementById("hakiStatus").innerText = "Haki Hint: Available";
     }
 
     const row = document.createElement("tr");
 
-    // IMPORTANT: These MUST be in the SAME ORDER as your table headers!
-    // Headers: Character | Gender | Affiliation | Devil Fruit | Haki | Bounty | Height | Origin | First Arc
     row.innerHTML = `
-    <td><div class="${compare(character.name, secretCharacter.name)}">${character.name}</div></td>
-    <td><div class="${compare(character.gender, secretCharacter.gender)}">${character.gender}</div></td>
-    <td><div class="${compare(character.affiliation, secretCharacter.affiliation)}">${character.affiliation}</div></td>
-    <td><div class="${compare(character.devilFruit, secretCharacter.devilFruit)}">${character.devilFruit}</div></td>
-    <td><div class="${compareHaki(character.haki, secretCharacter.haki)}">${character.haki}</div></td>
-    <td>${bountyDisplay(character.bounty, secretCharacter.bounty)}</td>
-    <td>${heightDisplay(character.height, secretCharacter.height)}</td>
-    <td><div class="${compare(character.origin, secretCharacter.origin)}">${character.origin}</div></td>
-    <td>${arcDisplay(character.firstArc, secretCharacter.firstArc)}</td>
-`;
+        <td><div class="${compare(character.name, secretCharacter.name)}">${character.name}</div></td>
+        <td><div class="${compare(character.gender, secretCharacter.gender)}">${character.gender}</div></td>
+        <td><div class="${compare(character.affiliation, secretCharacter.affiliation)}">${character.affiliation}</div></td>
+        <td><div class="${compare(character.devilFruit, secretCharacter.devilFruit)}">${character.devilFruit}</div></td>
+        <td><div class="${compareHaki(character.haki, secretCharacter.haki)}">${character.haki}</div></td>
+        <td>${bountyDisplay(character.bounty, secretCharacter.bounty)}</td>
+        <td>${heightDisplay(character.height, secretCharacter.height)}</td>
+        <td><div class="${compare(character.origin, secretCharacter.origin)}">${character.origin}</div></td>
+        <td>${arcDisplay(character.firstArc, secretCharacter.firstArc)}</td>
+    `;
 
-    // Check win condition BEFORE appending
-    if (character.name === secretCharacter.name) {
+    if(character.name === secretCharacter.name){
         input.value = "";
         suggestions.innerHTML = "";
         showWinMessage();
@@ -1401,58 +1443,102 @@ function submitGuess() {
     }
 
     document.getElementById("resultBody").prepend(row);
+
     input.value = "";
     suggestions.innerHTML = "";
-    input.focus();
 }
 
-// --- Hints ---
-function showHint() {
-    if (!arcHintShown) {
-        if (guessCount < 6) {
+function showHint(){
+
+    if(!arcHintShown){
+
+        if(guessCount < 6){
             alert("Arc hint unlocks at 6 guesses.");
             return;
         }
 
-        document.getElementById("arcHint").innerHTML = `<strong>${secretCharacter.firstArc}</strong>`;
-        document.getElementById("arcStatus").innerText = "Arc Hint: Revealed";
+        document.getElementById("arcHint").innerHTML =
+        `<strong>${secretCharacter.firstArc}</strong>`;
+
+        document.getElementById("arcStatus").innerText =
+        "Arc Hint: Revealed";
+
         arcHintShown = true;
         return;
     }
 
-    if (!hakiHintShown) {
-        if (guessCount < 9) {
+    if(!hakiHintShown){
+
+        if(guessCount < 9){
             alert("Haki hint unlocks at 9 guesses.");
             return;
         }
 
-        document.getElementById("hakiHint").innerHTML = `<strong>${secretCharacter.haki}</strong>`;
-        document.getElementById("hakiStatus").innerText = "Haki Hint: Revealed";
+        document.getElementById("hakiHint").innerHTML =
+        `<strong>${secretCharacter.haki}</strong>`;
+
+        document.getElementById("hakiStatus").innerText =
+        "Haki Hint: Revealed";
+
         hakiHintShown = true;
         return;
     }
 
-    alert("All hints already unlocked.");
+    alert("All hints unlocked.");
 }
 
-// --- Win ---
-function showWinMessage() {
+function showWinMessage(){
+
     input.disabled = true;
 
+    streak++;
+    document.getElementById("streakCounter").innerText =
+    `Streak: ${streak}`;
+
     document.getElementById("winPopupText").innerHTML = `
-        🎉 You got it!<br>
-        The answer was <strong>${secretCharacter.name}</strong><br>
-        Total Guesses: <strong>${guessCount}</strong>
+        Correct! The answer was <strong>${secretCharacter.name}</strong><br>
+        Guesses this round: <strong>${guessCount}</strong><br>
+        Current Streak: <strong>${streak}</strong>
     `;
 
-    document.getElementById("winPopup").classList.remove("hidden");
+    document
+    .getElementById("winPopup")
+    .classList.remove("hidden");
 }
 
-// --- Restart ---
-function continueStreak() {
-    document.getElementById("winPopup").classList.add("hidden");
+function giveUp(){
 
-    secretCharacter = characters[Math.floor(Math.random() * characters.length)];
+    input.disabled = true;
+
+    streak = 0;
+    document.getElementById("streakCounter").innerText =
+    "Streak: 0";
+
+    document.getElementById("winPopupText").innerHTML = `
+        You gave up.<br>
+        The secret character was <strong>${secretCharacter.name}</strong><br>
+        Your streak has been broken.
+    `;
+
+    document
+    .getElementById("winPopup")
+    .classList.remove("hidden");
+}
+
+function continueStreak(){
+
+    document
+    .getElementById("winPopup")
+    .classList.add("hidden");
+
+    secretCharacter =
+    characters[
+        Math.floor(
+            Math.random() *
+            characters.length
+        )
+    ];
+
     guessCount = 0;
     arcHintShown = false;
     hakiHintShown = false;
@@ -1460,8 +1546,10 @@ function continueStreak() {
     document.getElementById("guessCounter").innerText = "Guesses: 0";
     document.getElementById("arcStatus").innerText = "Arc Hint: Locked";
     document.getElementById("hakiStatus").innerText = "Haki Hint: Locked";
+
     document.getElementById("arcHint").innerHTML = "Unlocks at 6 guesses";
     document.getElementById("hakiHint").innerHTML = "Unlocks at 9 guesses";
+
     document.getElementById("resultBody").innerHTML = "";
 
     input.disabled = false;
