@@ -13,11 +13,12 @@
         <div class="wanted-header">
             <div class="wanted-top">WANTED</div>
             <h1>ONE PIECE CHARACTER GUESSER</h1>
-            <p class="subtitle">Guess Today’s Pirate!</p>
+            <p class="subtitle">Can you guess?</p>
         </div>
 
         <div class="stats-bar">
             <div id="guessCounter">Guesses: 0</div>
+            <div id="streakCounter">Streak: 0</div>
             <div id="arcStatus">Arc Hint: Locked</div>
             <div id="hakiStatus">Haki Hint: Locked</div>
         </div>
@@ -28,7 +29,8 @@
                 type="text"
                 id="guessInput"
                 placeholder="Character name, alias, epithet..."
-                autocomplete="off">
+                autocomplete="off"
+            >
 
             <div id="suggestions"></div>
 
@@ -39,6 +41,10 @@
 
                 <button class="hint-btn" onclick="showHint()">
                     Hint
+                </button>
+
+                <button class="giveup-btn" onclick="giveUp()">
+                    Give Up
                 </button>
             </div>
 
@@ -60,23 +66,21 @@
 
         <div class="table-wrapper">
             <table>
-    <thead>
-        <tr>
-            <th>Character</th>
-            <th>Gender</th>
-            <th>Affiliation</th>
-            <th>Devil Fruit</th>
-            <th>Haki</th>
-            <th>Bounty</th>
-            <th>Height</th>
-            <th>Origin</th>
-            <th>First Arc</th>
-        </tr>
-    </thead>
-    <tbody id="resultBody">
-        <!-- Rows will be inserted here -->
-    </tbody>
-</table>
+                <thead>
+                    <tr>
+                        <th>Character</th>
+                        <th>Gender</th>
+                        <th>Affiliation</th>
+                        <th>Devil Fruit</th>
+                        <th>Haki</th>
+                        <th>Bounty</th>
+                        <th>Height</th>
+                        <th>Origin</th>
+                        <th>First Arc</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody"></tbody>
+            </table>
         </div>
 
         <div class="legend">
@@ -122,15 +126,16 @@
 
     </div>
 
-    <script src="onepiece.js"></script>
     <div id="winPopup" class="win-popup hidden">
-    <div class="win-popup-content">
-        <h2>🎉 Correct Guess!</h2>
-        <p id="winPopupText"></p>
-        <button class="play-again-btn" onclick="continueStreak()">
-            Continue Streak
-        </button>
+        <div class="win-popup-content">
+            <h2>🏴‍☠️ Round Complete</h2>
+            <p id="winPopupText"></p>
+            <button class="play-again-btn" onclick="continueStreak()">
+                Continue Streak
+            </button>
+        </div>
     </div>
-</div>
+
+    <script src="onepiece.js"></script>
 </body>
 </html>
