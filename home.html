@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime World</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-menu-wrap">
+        <button id="menuBtn" class="menu-btn">⋮</button>
+
+        <div id="appDropdown" class="app-dropdown">
+            <a href="profile.html">Profile</a>
+            <a href="youtube.html">YouTube</a>
+            <a href="onepiece.html">One Piece</a>
+            <a href="naruto.html">Naruto</a>
+            <a href="bleach.html">Bleach</a>
+            <a href="demonslayer.html">Demon Slayer</a>
+            <a href="dbz.html">Dragon Ball Z</a>
+            <a href="aot.html">Attack on Titan</a>
+            <a href="duel.html">1v1</a>
+            <a href="leaderboard.html">Leaderboard</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Choose Your Anime Universe</h1>
+
+        <div class="anime-grid">
+
+            <div class="anime-card" onclick="window.location.href='onepiece.html'">
+                <img src="onepiece.jpg" alt="One Piece">
+                <h2>One Piece</h2>
+            </div>
+
+            <div class="anime-card" onclick="window.location.href='naruto.html'">
+                <img src="naruto.jpg" alt="Naruto">
+                <h2>Naruto</h2>
+            </div>
+
+            <div class="anime-card" onclick="window.location.href='bleach.html'">
+                <img src="bleach.jpg" alt="Bleach">
+                <h2>Bleach</h2>
+            </div>
+
+            <div class="anime-card" onclick="window.location.href='dbz.html'">
+                <img src="dbz.jpg" alt="DBZ">
+                <h2>Dragon Ball</h2>
+            </div>
+
+            <div class="anime-card" onclick="window.location.href='demonslayer.html'">
+                <img src="ds.jpg" alt="Demon Slayer">
+                <h2>Demon Slayer</h2>
+            </div>
+
+            <div class="anime-card" onclick="window.location.href='aot.html'">
+                <img src="aot.jpg" alt="AOT">
+                <h2>AOT</h2>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="auth-guard.js"></script>
+    <script src="backbutton.js"></script>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const appDropdown = document.getElementById("appDropdown");
+
+        if(menuBtn && appDropdown){
+            menuBtn.addEventListener("click", function(e){
+                e.stopPropagation();
+                appDropdown.classList.toggle("show");
+            });
+
+            document.addEventListener("click", function(e){
+                if(!appDropdown.contains(e.target) && e.target !== menuBtn){
+                    appDropdown.classList.remove("show");
+                }
+            });
+        }
+
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        if(logoutBtn){
+            logoutBtn.addEventListener("click", async function(e){
+                e.preventDefault();
+
+                await supabaseClient.auth.signOut();
+                window.location.href = "login.html";
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="auth-guard.js"></script>
+<script src="wins-sync.js"></script>
+</body>
+</html>

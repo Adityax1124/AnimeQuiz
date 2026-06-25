@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bleach Character Guesser</title>
+    <link rel="stylesheet" href="bleach.css">
+</head>
+<body>
+    <div class="app-menu-wrap">
+    <button class="menu-btn">⋮</button>
+
+    <div class="app-dropdown">
+        <a href="home.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="youtube.html">YouTube</a>
+        <a href="onepiece.html">One Piece</a>
+        <a href="naruto.html">Naruto</a>
+        <a href="demonslayer.html">Demon Slayer</a>
+        <a href="dbz.html">Dragon Ball Z</a>
+        <a href="aot.html">Attack on Titan</a>
+        <a href="duel.html">1v1</a>
+        <a href="leaderboard.html">Leaderboard</a>
+    </div>
+</div>
+    <div class="container">
+        <div class="wanted-header">
+            <div class="wanted-top">SOUL FILE</div>
+            <h1>BLEACH CHARACTER GUESSER</h1>
+            <p class="subtitle">Can you guess?</p>
+        </div>
+
+        <div class="stats-bar">
+            <div id="guessCounter">Guesses: 0</div>
+            <div id="streakCounter">Streak: 0</div>
+            <div id="arcStatus">First Arc Hint: Locked</div>
+            <div id="raceStatus">Race Hint: Locked</div>
+        </div>
+
+        <div class="search-section">
+
+            <input
+                type="text"
+                id="guessInput"
+                placeholder="Character name..."
+                autocomplete="off"
+            >
+
+            <div id="suggestions"></div>
+
+            <div class="button-row">
+                <button class="guess-btn" onclick="submitGuess()">
+                    Guess
+                </button>
+
+                <button class="hint-btn" onclick="showHint()">
+                    Hint
+                </button>
+
+                <button class="giveup-btn" onclick="giveUp()">
+                    Give Up
+                </button>
+            </div>
+
+        </div>
+
+        <div class="hint-cards">
+
+            <div class="hint-card">
+                <h3>📖 FIRST ARC</h3>
+                <div id="arcHint">Unlocks at 6 guesses</div>
+            </div>
+
+            <div class="hint-card">
+                <h3>👤 RACE</h3>
+                <div id="raceHint">Unlocks at 9 guesses</div>
+            </div>
+
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Race</th>
+                        <th>Age</th>
+                        <th>Height</th>
+                        <th>Hair Color</th>
+                        <th>Location</th>
+                        <th>First Arc</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody"></tbody>
+            </table>
+        </div>
+
+        <div class="legend">
+            <h2>Legend</h2>
+
+            <div class="legend-grid">
+                <div class="legend-item green">
+                    🟩
+                    <p>Exact Match</p>
+                </div>
+
+                <div class="legend-item red">
+                    🟥
+                    <p>Incorrect</p>
+                </div>
+
+                <div class="legend-item arrow">
+                    ⬆️
+                    <p>Secret value is higher</p>
+                </div>
+
+                <div class="legend-item arrow">
+                    ⬇️
+                    <p>Secret value is lower</p>
+                </div>
+
+                <div class="legend-item arrow">
+                    ➡️
+                    <p>Secret arc is later</p>
+                </div>
+
+                <div class="legend-item arrow">
+                    ⬅️
+                    <p>Secret arc is earlier</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="winPopup" class="win-popup hidden">
+        <div class="win-popup-content">
+            <h2>⚔️ Round Complete</h2>
+            <p id="winPopupText"></p>
+            <button class="play-again-btn" onclick="continueStreak()">
+                Continue Streak
+            </button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="auth-guard.js"></script>
+<script src="wins-sync.js"></script>
+    <script src="bleach.js"></script>
+    <script src="promo.js"></script>
+    <script src="backbutton.js"></script>
+
+</body>
+</html>

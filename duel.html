@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Guesser 1v1</title>
+    <link rel="stylesheet" href="duel.css">
+</head>
+<body>
+
+    <div class="app-menu-wrap">
+        <button class="menu-btn">⋮</button>
+
+        <div class="app-dropdown">
+            <a href="home.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="leaderboard.html">Leaderboard</a>
+            <a href="youtube.html">YouTube</a>
+            <a href="onepiece.html">One Piece</a>
+            <a href="naruto.html">Naruto</a>
+            <a href="bleach.html">Bleach</a>
+            <a href="demonslayer.html">Demon Slayer</a>
+            <a href="dbz.html">Dragon Ball Z</a>
+            <a href="aot.html">Attack on Titan</a>
+        </div>
+    </div>
+
+    <div class="duel-container">
+
+        <div class="duel-header">
+            <div class="duel-top">REAL TIME BATTLE</div>
+            <h1>Anime Guesser 1v1</h1>
+            <p>Select an anime, create a room or join one, and race your opponent to guess first.</p>
+        </div>
+
+        <div class="duel-layout">
+
+            <div class="duel-left-panel">
+                <div class="panel-card">
+                    <div class="panel-title">Select Anime</div>
+
+                    <div class="anime-grid">
+
+                        <button class="anime-card" data-anime="onepiece">
+                            <img src="onepiece.jpg" alt="One Piece">
+                            <span>One Piece</span>
+                        </button>
+
+                        <button class="anime-card" data-anime="naruto">
+                            <img src="naruto.jpg" alt="Naruto">
+                            <span>Naruto</span>
+                        </button>
+
+                        <button class="anime-card" data-anime="bleach">
+                            <img src="bleach.jpg" alt="Bleach">
+                            <span>Bleach</span>
+                        </button>
+
+                        <button class="anime-card" data-anime="demonslayer">
+                            <img src="ds.jpg" alt="Demon Slayer">
+                            <span>Demon Slayer</span>
+                        </button>
+
+                        <button class="anime-card" data-anime="dbz">
+                            <img src="dbz.jpg" alt="Dragon Ball Z">
+                            <span>Dragon Ball Z</span>
+                        </button>
+
+                        <button class="anime-card" data-anime="aot">
+                            <img src="aot.jpg" alt="Attack on Titan">
+                            <span>Attack on Titan</span>
+                        </button>
+
+                    </div>
+
+                    <div class="selected-anime-box">
+                        <span>Selected Anime:</span>
+                        <strong id="selectedAnimeLabel">None</strong>
+                    </div>
+                </div>
+
+                <div class="panel-card action-card">
+                    <div class="panel-title">Create Room</div>
+                    <p class="panel-subtext">
+                        Pick an anime first, then create a private 1v1 room.
+                    </p>
+
+                    <button id="createRoomBtn" class="duel-btn primary-btn">
+                        Create Room
+                    </button>
+                </div>
+
+                <div class="panel-card action-card">
+                    <div class="panel-title">Join Room</div>
+                    <p class="panel-subtext">
+                        Enter a room code to join your opponent.
+                    </p>
+
+                    <div class="join-row">
+                        <input
+                            type="text"
+                            id="roomCodeInput"
+                            class="room-code-input"
+                            placeholder="Enter room code"
+                            maxlength="10"
+                        >
+                        <button id="joinRoomBtn" class="duel-btn secondary-btn">
+                            Join
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="duel-right-panel">
+                <div class="panel-card room-card">
+                    <div class="panel-title">Room Status</div>
+
+                    <div id="roomStateBox" class="room-state-box">
+                        <p class="status-line">No active room yet.</p>
+                    </div>
+
+                    <div id="roomInfoBox" class="room-info-box hidden">
+                        <div class="room-info-row">
+                            <span>Room Code</span>
+                            <strong id="roomCodeDisplay">-----</strong>
+                        </div>
+
+                        <div class="room-info-row">
+                            <span>Anime</span>
+                            <strong id="roomAnimeDisplay">-</strong>
+                        </div>
+
+                        <div class="room-info-row">
+                            <span>Status</span>
+                            <strong id="roomStatusDisplay">Waiting</strong>
+                        </div>
+
+                        <div class="room-info-row">
+                            <span>Host</span>
+                            <strong id="roomHostDisplay">-</strong>
+                        </div>
+
+                        <div class="room-info-row">
+                            <span>Guest</span>
+                            <strong id="roomGuestDisplay">Waiting...</strong>
+                        </div>
+
+                        <div class="room-actions">
+                            <button id="copyRoomBtn" class="duel-btn ghost-btn">
+                                Copy Code
+                            </button>
+
+                            <button id="leaveRoomBtn" class="duel-btn danger-btn">
+                                Leave Room
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-card info-card">
+                    <div class="panel-title">How 1v1 Works</div>
+
+                    <ul class="duel-rules">
+                        <li>Both players must join the same room.</li>
+                        <li>Both players will play on the same selected anime.</li>
+                        <li>The match starts automatically once the second player joins.</li>
+                        <li>The first player to correctly guess the secret character wins.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="auth-guard.js"></script>
+    <script src="duel.js"></script>
+    <script src="backbutton.js"></script>
+</body>
+</html>
