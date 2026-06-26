@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Guesser Leaderboard</title>
+    <link rel="stylesheet" href="leaderboard.css">
+</head>
+<body>
+
+    <div class="app-menu-wrap">
+        <button class="menu-btn">⋮</button>
+
+        <div class="app-dropdown">
+            <a href="home.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="youtube.html">YouTube</a>
+            <a href="onepiece.html">One Piece</a>
+            <a href="naruto.html">Naruto</a>
+            <a href="bleach.html">Bleach</a>
+            <a href="demonslayer.html">Demon Slayer</a>
+            <a href="dbz.html">Dragon Ball Z</a>
+            <a href="aot.html">Attack on Titan</a>
+            <a href="story-mode.html">Story Mode</a>
+            <a href="duel.html">1v1</a>
+        </div>
+    </div>
+
+    <div class="leaderboard-container">
+        <div class="leaderboard-header">
+            <div class="leaderboard-top">WORLD RECORDS</div>
+            <h1>Anime Guesser Leaderboard</h1>
+            <p>Top players ranked by total correct guesses across all anime modes.</p>
+        </div>
+
+        <div class="leaderboard-summary">
+            <div class="summary-card">
+                <h3>Total Players</h3>
+                <p id="totalPlayers">0</p>
+            </div>
+
+            <div class="summary-card">
+                <h3>Your Position</h3>
+                <p id="yourRank">--</p>
+            </div>
+        </div>
+
+        <div class="leaderboard-table-wrap">
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Player</th>
+                        <th>Rank</th>
+                        <th>Total Wins</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboardBody">
+                    <tr>
+                        <td colspan="4" class="loading-cell">Loading leaderboard...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="auth-guard.js"></script>
+    <script src="leaderboard.js"></script>
+    <script src="backbutton.js"></script>
+</body>
+</html>

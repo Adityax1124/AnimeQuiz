@@ -1,0 +1,368 @@
+/* ==========================================
+   GLOBAL
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    overflow-x:hidden;
+
+}
+
+body{
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.85)
+    ),
+    url("main.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    min-height:100vh;
+
+}
+
+/* ==========================================
+   MENU
+========================================== */
+
+.app-menu-wrap{
+
+    position:fixed;
+
+    top:20px;
+
+    right:20px;
+
+    z-index:1000;
+
+}
+
+.menu-btn{
+
+    width:50px;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#1b1b1b;
+
+    color:#FFD54F;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+}
+
+.app-dropdown{
+
+    display:none;
+
+    position:absolute;
+
+    top:60px;
+
+    right:0;
+
+    width:220px;
+
+    background:#1d1d1d;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.app-dropdown.show{
+
+    display:block;
+
+}
+
+.app-dropdown a{
+
+    display:block;
+
+    padding:15px;
+
+    text-decoration:none;
+
+    color:white;
+
+}
+
+.app-dropdown a:hover{
+
+    background:#FFD54F;
+
+    color:black;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.story-header{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:50px auto 30px;
+
+    text-align:center;
+
+}
+
+.story-header h1{
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+.story-header p{
+
+    color:#cccccc;
+
+}
+
+/* ==========================================
+   OVERALL
+========================================== */
+
+.overall-card{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    background:rgba(25,25,25,.9);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:35px;
+
+}
+
+.overall-title{
+
+    font-size:22px;
+
+    margin-bottom:18px;
+
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:15px;
+
+    background:#333;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+    width:0%;
+
+    background:#FFD54F;
+
+    transition:.5s;
+
+}
+
+.overall-text{
+
+    margin-top:12px;
+
+    color:#d7d7d7;
+
+}
+
+/* ==========================================
+   ARC GRID
+========================================== */
+
+.arc-container{
+
+    width:90%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+    padding-bottom:50px;
+
+}
+
+/* ==========================================
+   ARC CARD
+========================================== */
+
+.arc-card{
+
+    background:rgba(20,20,20,.92);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    border:2px solid #2a2a2a;
+
+    transition:.3s;
+
+}
+
+.arc-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#FFD54F;
+
+}
+
+.arc-title{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+.arc-progress-text{
+
+    margin-bottom:15px;
+
+    color:#cccccc;
+
+}
+
+.arc-footer{
+
+    margin-top:20px;
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.play-btn{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#FFD54F;
+
+    color:black;
+
+    font-weight:bold;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.play-btn:hover{
+
+    transform:scale(1.03);
+
+}
+
+.lock-text{
+
+    text-align:center;
+
+    color:#888;
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   STATES
+========================================== */
+
+.completed{
+
+    border-color:#4CAF50;
+
+}
+
+.locked{
+
+    opacity:.45;
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+    .story-header h1{
+
+        font-size:32px;
+
+    }
+
+    .arc-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

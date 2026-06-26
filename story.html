@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Story Mode</title>
+
+    <link rel="stylesheet"
+          href="story.css">
+
+</head>
+
+<body>
+
+    <!-- MENU -->
+
+    <div class="app-menu-wrap">
+
+        <button class="menu-btn">☰</button>
+
+        <div class="app-dropdown">
+
+            <a href="home.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="leaderboard.html">Leaderboard</a>
+
+        </div>
+
+    </div>
+
+    <!-- HEADER -->
+
+    <div class="story-header">
+
+        <h1 id="animeTitle">
+
+            STORY MODE
+
+        </h1>
+
+        <p id="animeSubtitle">
+
+            Complete every arc to unlock the next one.
+
+        </p>
+
+    </div>
+
+    <!-- OVERALL -->
+
+    <div class="overall-card">
+
+        <div class="overall-title">
+
+            Overall Progress
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div id="overallProgressFill"
+                 class="progress-fill">
+
+            </div>
+
+        </div>
+
+        <div id="overallProgressText"
+             class="overall-text">
+
+            Loading...
+
+        </div>
+
+    </div>
+
+    <!-- ARC LIST -->
+
+    <div id="arcContainer"
+         class="arc-container">
+
+    </div>
+
+    <!-- SCRIPTS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+    <script src="auth-guard.js"></script>
+
+    <!-- DATA -->
+
+    <script src="onepiece-data.js"></script>
+    <script src="naruto-data.js"></script>
+    <script src="bleach-data.js"></script>
+    <script src="demonslayer-data.js"></script>
+    <script src="dbz-data.js"></script>
+    <script src="aot-data.js"></script>
+
+<script src="onepiece-config.js"></script>
+<script src="naruto-config.js"></script>
+<script src="bleach-config.js"></script>
+<script src="demonslayer-config.js"></script>
+<script src="dbz-config.js"></script>
+<script src="aot-config.js"></script>
+
+<script src="story-config.js"></script>
+<script src="story-engine.js"></script>
+<script src="backbutton.js"></script>
+
+</body>
+
+</html>

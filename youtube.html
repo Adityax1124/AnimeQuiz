@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JinX YouTube</title>
+    <link rel="stylesheet" href="youtube.css">
+</head>
+<body>
+
+    <div class="app-menu-wrap">
+        <button class="menu-btn">⋮</button>
+
+        <div class="app-dropdown">
+            <a href="home.html">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="onepiece.html">One Piece</a>
+            <a href="naruto.html">Naruto</a>
+            <a href="bleach.html">Bleach</a>
+            <a href="demonslayer.html">Demon Slayer</a>
+            <a href="dbz.html">Dragon Ball Z</a>
+            <a href="aot.html">Attack on Titan</a>
+            <a href="leaderboard.html">Leaderboard</a>
+        </div>
+    </div>
+
+    <div class="youtube-page">
+
+        <section class="channel-hero">
+            <div class="subscribe-banner">
+                <img src="subscribe.jpg" alt="Subscribe Banner">
+            </div>
+
+            <div class="channel-info-card">
+                <div class="channel-left">
+                    <div class="channel-logo-wrap">
+                        <img src="logo.jpg" alt="JinX Logo" class="channel-logo">
+                    </div>
+                </div>
+
+                <div class="channel-right">
+                    <h1>JinX Ind</h1>
+                    <div class="channel-meta">@IndJinX</div>
+
+                    <div class="channel-stats">
+    <div class="channel-stat-box">
+        <span class="stat-label">Subscribers</span>
+        <strong id="subCount">Loading...</strong>
+    </div>
+
+    <div class="channel-stat-box">
+        <span class="stat-label">Videos</span>
+        <strong id="videoCount">Loading...</strong>
+    </div>
+</div>
+
+<div class="channel-actions">
+    <a href="#" class="channel-btn primary-btn" id="visitChannelBtn">Visit Channel</a>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="live-section">
+            <div class="section-head">
+                <h2>🔴 Live Now</h2>
+            </div>
+
+            <div id="liveContainer" class="live-card placeholder-live">
+                <div class="live-thumb-wrap">
+                    <div class="live-badge">LIVE</div>
+                    <img src="subscribe.jpg" alt="Live Thumbnail" class="live-thumb">
+                </div>
+
+                <div class="live-content">
+                    <h3>No live stream right now</h3>
+                    <button class="watch-live-btn" disabled>Waiting for Live</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="videos-section">
+            <div class="section-head">
+                <h2>Latest Videos</h2>
+            </div>
+
+            <div id="latestVideosGrid" class="videos-grid">
+                <div class="video-card">
+                    <div class="video-thumb-wrap">
+                        <img src="subscribe.jpg" alt="Video Thumbnail" class="video-thumb">
+                    </div>
+                    <div class="video-info">
+                        <h3>Latest video title will appear here</h3>
+                        <p>Upload date / category</p>
+                        <button class="watch-video-btn">Watch Video</button>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumb-wrap">
+                        <img src="subscribe.jpg" alt="Video Thumbnail" class="video-thumb">
+                    </div>
+                    <div class="video-info">
+                        <h3>Latest video title will appear here</h3>
+                        <p>Upload date / category</p>
+                        <button class="watch-video-btn">Watch Video</button>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumb-wrap">
+                        <img src="subscribe.jpg" alt="Video Thumbnail" class="video-thumb">
+                    </div>
+                    <div class="video-info">
+                        <h3>Latest video title will appear here</h3>
+                        <p>Upload date / category</p>
+                        <button class="watch-video-btn">Watch Video</button>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumb-wrap">
+                        <img src="subscribe.jpg" alt="Video Thumbnail" class="video-thumb">
+                    </div>
+                    <div class="video-info">
+                        <h3>Latest video title will appear here</h3>
+                        <p>Upload date / category</p>
+                        <button class="watch-video-btn">Watch Video</button>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumb-wrap">
+                        <img src="subscribe.jpg" alt="Video Thumbnail" class="video-thumb">
+                    </div>
+                    <div class="video-info">
+                        <h3>Latest video title will appear here</h3>
+                        <p>Upload date / category</p>
+                        <button class="watch-video-btn">Watch Video</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="youtube.js"></script>
+    <script src="backbutton.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="auth-guard.js"></script>
+<script src="wins-sync.js"></script>
+</body>
+</html>
