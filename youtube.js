@@ -28,7 +28,7 @@ if(visitChannelBtn){
 /* =========================
    YOUTUBE API CONFIG
 ========================= */
-const API_KEY = "AIzaSyDJvU_8ymQKfbqF6gpLIE8GAhfdIbs2hbw";
+const API_KEY = "";
 const CHANNEL_ID = "UC22bUQGVKHrVfxX7h4L983w";
 const YT_STATS_CACHE_KEY = "youtube_channel_stats_cache";
 const YT_VIDEOS_CACHE_KEY = "youtube_latest_videos_cache";
