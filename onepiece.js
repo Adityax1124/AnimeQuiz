@@ -1587,9 +1587,6 @@ urlParams.get("mode")==="story";
 const storyArc =
 urlParams.get("arc");
 
-const animeKey =
-urlParams.get("anime");
-
 /* ===========================
    STORY FILTER
 =========================== */
